@@ -3,6 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+int will_it_work(char array[9][9], int row, int column)
+{
+	return 1;
+}
 int solve(char array [9][9]) 
 {
 	/*
@@ -48,9 +53,9 @@ int solve(char array [9][9])
 		else if(array[x][y] == '.')
 		{
 			array[x][y] = i;
-			if(will_it_work(array[x][y], x, y) == true)
+			if(will_it_work(array, x, y))
 			{
-				if(solve(array) == true)
+				if(solve(array))
 				{
 					return(1); /*success*/
 				}
@@ -75,9 +80,9 @@ int		main(int argc, char const *argv[])
 	int x;
 	int y;
 	char array[9][9];
-	char *str[] = {"1.3456789", "123456789", "123456789", "123456789", "123456789", "123456789", "123456789", "123456789", "123456789",};
+	//char *str[] = {"1.3456789", "123456789", "123456789", "123456789", "123456789", "123456789", "123456789", "123456789", "123456789",};
 	
-	array = malloc(sizeof(*array) * 82);
+	// array = malloc(sizeof(*array) * 82);
 	x = 0;
 	y = 0;
 	while(x < 9)
@@ -85,12 +90,29 @@ int		main(int argc, char const *argv[])
 		y = 0;
 		while (y < 9)
 		{
-			array[x][y] = str[x][y];
+			array[x][y] = argv[x + 1][y];
 			y++;
 		}
 		x++;
 	}
-	*(array + 81) = '\0';
-	printf("%s\n", array);
+	//*(array + 81) = '\0';
+	
+	solve(array);
+
+	x = 0;
+	y = 0;
+	while(x < 9)
+	{
+		y = 0;
+		while (y < 9)
+		{
+			write(1, &(array[x][y]), 1);
+			y++;
+		}
+		write(1, "\n", 1);
+		x++;
+	}
+
+	//printf("%s\n", array);
 	return 0;
 }
