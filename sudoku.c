@@ -4,8 +4,53 @@
 #include <string.h>
 
 
-int will_it_work(char array[9][9], int row, int column)
+int will_it_work(char array[9][9], int a, int b)
 {
+	/*
+	loop through the other 8 entries in the row
+	{
+		if (value of other == value at row, column) 
+		{
+			return 0;
+		}
+	}
+	loop through the other 8 entries in the column
+	{
+		if (value of other == value at row, column) 
+		{
+			return 0;
+		}
+	}
+	loop through the other 8 entries in the grid
+	{
+		if (value of other == value at row, column) 
+		{
+			return 0;
+		}
+	}
+	return 1;
+	*/
+
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+
+	while(i < 9 && j < 9)
+	{	
+		if(array[a][b] == array[a][j] && b != j)
+		{	
+			return (0);
+		}
+		j++;
+
+		if(array[a][b] == array[i][b] && a != i)
+		{	
+			return (0);
+		}
+		i++;
+	}
 	return 1;
 }
 int solve(char array [9][9]) 
