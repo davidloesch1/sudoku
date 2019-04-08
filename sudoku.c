@@ -158,9 +158,7 @@ int		main(int argc, char const *argv[])
 	int x;
 	int y;
 	char array[9][9];
-	//char *str[] = {"1.3456789", "123456789", "123456789", "123456789", "123456789", "123456789", "123456789", "123456789", "123456789",};
 	
-	// array = malloc(sizeof(*array) * 82);
 	x = 0;
 	y = 0;
 	while(x < 9)
@@ -173,24 +171,28 @@ int		main(int argc, char const *argv[])
 		}
 		x++;
 	}
-	//*(array + 81) = '\0';
 	
-	solve(array);
-
-	x = 0;
-	y = 0;
-	while(x < 9)
+	if (solve(array))
 	{
+		x = 0;
 		y = 0;
-		while (y < 9)
+		while(x < 9)
 		{
-			write(1, &(array[x][y]), 1);
-			y++;
+			y = 0;
+			while (y < 9)
+			{
+				write(1, &(array[x][y]), 1);
+				y++;
+			}
+			write(1, "\n", 1);
+			x++;
 		}
-		write(1, "\n", 1);
-		x++;
+	}
+	else
+	{
+		write(1, "Error\n", 7);
 	}
 
-	//printf("%s\n", array);
+
 	return 0;
 }
