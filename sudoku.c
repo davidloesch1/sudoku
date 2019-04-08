@@ -4,6 +4,7 @@
 #include <string.h>
 
 
+
 int will_it_work(char array[9][9], int a, int b)
 {
 	/*
@@ -51,6 +52,37 @@ int will_it_work(char array[9][9], int a, int b)
 		}
 		i++;
 	}
+	/* e.g. a = 4, b = 1 
+	 i = 3, 4, 5;
+	 j = 0, 1, 2;
+	 */
+
+
+
+	/* top-left cell of the 3x3 block that a, b is in*/
+	i = a / 3 * 3;
+	j = b / 3 * 3;
+	/* bottom-right cell of the 3x3 block*/
+	int bottom_right_i = i + 2;
+	int bottom_right_j = j + 2;
+
+	while(i <= bottom_right_i && j <= bottom_right_j)
+	{
+		while(j <= bottom_right_j)
+		{
+			//if(array[a][b] == array[i][j] && (b != j || a != i))
+			if(array[a][b] == array[i][j] && ! (b == j && a == i))
+			{	
+				return (0);
+			}
+			j++;
+		}
+		i++;
+		j = b / 3 * 3;
+	}
+
+
+
 	return 1;
 }
 int solve(char array [9][9]) 
@@ -122,6 +154,7 @@ int solve(char array [9][9])
 
 int		main(int argc, char const *argv[])
 {
+	(void)argc;
 	int x;
 	int y;
 	char array[9][9];
